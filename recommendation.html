@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Letter of Recommendation — Akhror Sharipov</title>
+
+<!-- Google Font: Play (headers) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet" />
+
+<style>
+  /* ============================================================
+     BRAND DNA
+     Pure white surface, pure black text.
+     'Play' for headers, clean sans-serif for body.
+     #e53935 reserved strictly for high-end accents.
+     ============================================================ */
+  :root {
+    --ink:    #000000;  /* pure black body text     */
+    --muted:  #515154;  /* labels / secondary       */
+    --faint:  #6e6e73;  /* tertiary                 */
+    --line:   #d2d2d7;  /* hairline                 */
+    --accent: #e53935;  /* high-end accent          */
+    --paper:  #ffffff;  /* page surface             */
+    --desk:   #f5f5f7;  /* screen background        */
+
+    --font:      "SF Pro Text", "Inter", "Helvetica Neue",
+                 Helvetica, Arial, sans-serif;
+    --font-head: "Play", "SF Pro Display", "Helvetica Neue",
+                 Arial, sans-serif;
+  }
+
+  /* ---------- Reset ---------- */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--desk);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 11pt;
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  h1, h2, h3 { font-family: var(--font-head); }
+
+  /* ============================================================
+     NAVIGATION (screen only — hidden in print via .no-print)
+     ============================================================ */
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.82);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    width: 210mm;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 13px 25mm;
+    display: flex;
+    align-items: center;
+    gap: 26px;
+  }
+  .nav-link {
+    font-size: 10.5pt;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.18s ease;
+  }
+  .nav-link:hover { color: var(--accent); }
+  .nav-link.active { color: var(--ink); font-weight: 600; }
+
+  /* ============================================================
+     THE PAGE (screen simulation of an A4 sheet)
+     ============================================================ */
+  .sheet {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 28px auto;
+    padding: 25mm;
+    background: var(--paper);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.10),
+                0 2px  8px rgba(0, 0, 0, 0.06);
+  }
+
+  /* ============================================================
+     LETTERHEAD
+     ============================================================ */
+  .letterhead {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .logo {
+    height: 35px;
+    width: auto;
+    display: block;
+  }
+  .accent-line {
+    width: 48px;
+    height: 3px;
+    background: var(--accent);
+    margin-top: 9mm;
+  }
+
+  /* ---------- Letter meta ---------- */
+  .letter-meta {
+    margin-top: 9mm;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .meta-row {
+    display: flex;
+    gap: 6mm;
+    line-height: 1.5;
+    margin-bottom: 2mm;
+  }
+  .meta-row:last-child { margin-bottom: 0; }
+  .meta-label {
+    flex: 0 0 22mm;
+    font-size: 10.5pt;
+    font-weight: 600;
+    color: var(--faint);
+  }
+  .meta-value {
+    font-size: 10.5pt;
+    color: var(--ink);
+  }
+  .meta-value.accent {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .meta-value.subject {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 12.5pt;
+    line-height: 1.3;
+  }
+
+  /* ============================================================
+     LETTER BODY
+     ============================================================ */
+  .letter-body { margin-top: 11mm; }
+
+  .salutation { margin-bottom: 5mm; }
+
+  .letter-body p {
+    max-width: 64em;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    orphans: 3;
+    widows: 3;
+  }
+  .letter-body p + p { margin-top: 4.5mm; }
+
+  .closing { margin-top: 8mm; }
+
+  /* ============================================================
+     SIGNATURE BLOCK
+     Clear vertical space (no heavy rule) so a signature PNG
+     can be overlaid later, followed by the typed name + info.
+     ============================================================ */
+  .signature-block {
+    margin-top: 4mm;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    position: relative;     /* allows an <img> signature to be overlaid */
+  }
+  .signature-space {
+    height: 80px;           /* blank space reserved for digital signature */
+  }
+  .sig-name {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 11.5pt;
+    color: var(--ink);
+  }
+  .sig-info {
+    font-size: 10pt;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .sig-info a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.18s ease;
+  }
+  .sig-info a:hover { color: var(--accent); }
+
+  /* ============================================================
+     PRINT / PDF EXPORT  (reusable block)
+     ============================================================ */
+  @page {
+    size: A4;
+    margin: 25mm;
+  }
+
+  @media print {
+    /* Navigation and any screen-only chrome disappears in the PDF */
+    .no-print { display: none !important; }
+
+    html, body { background: #ffffff; }
+
+    .sheet {
+      width: auto;
+      min-height: 0;
+      margin: 0;
+      padding: 0;
+      box-shadow: none;
+    }
+
+    /* Never split a paragraph, heading, section, or the signature
+       across pages — push the whole block to the next page instead. */
+    p, h1, h2, section, .signature-block {
+      break-inside: avoid;
+      page-break-inside: avoid;
+      orphans: 3;
+      widows: 3;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===================== NAVIGATION ===================== -->
+  <nav class="site-nav no-print">
+    <div class="nav-inner">
+      <a class="nav-link" href="index.html">Personal Statement</a>
+      <a class="nav-link active" href="recommendation.html">Recommendation Letter</a>
+    </div>
+  </nav>
+
+  <main class="sheet">
+
+    <!-- ===================== LETTERHEAD ===================== -->
+    <header class="letterhead">
+      <svg class="logo" width="4657" height="468" viewBox="0 0 4657 468" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Inexbrand"><path d="M74.1915 0H188.778L114.586 468H0L74.1915 0Z" fill="black"/><path d="M285.501 0H400.087L573.255 292.017L619.926 0H734.513L660.321 468H545.735L371.924 177.917L325.735 468H211.148L285.501 0Z" fill="black"/><path d="M824.317 0H1212.49L1196.88 99.7563H923.292L909.613 187.747H1156.33L1142 280.091H894.806L881.127 368.082H1154.07L1138.46 467.839H750.93L824.317 0Z" fill="black"/><path d="M1398.86 222.719L1287.33 0H1422.51L1489.78 159.062L1608.23 0H1743.42L1560.92 222.719L1682.43 468H1542.89L1468.06 297.657L1339.15 468H1200.26L1398.86 222.719Z" fill="black"/><path d="M2012.99 468L2011.7 0H1820.35L1637.85 222.719L1759.35 468H2012.99Z" fill="#E53935"/><path d="M2073.66 468V0H2362.7C2444.3 0 2512.86 36.2606 2512.86 119.095C2512.86 174.695 2482.92 208.859 2438.67 225.136C2491.61 238.834 2527.18 273.162 2527.18 338.753C2527.18 424.166 2462.32 467.839 2377.03 467.839H2073.66V468ZM2188.41 99.9176V189.682H2354.17C2379.76 189.682 2398.43 170.988 2398.43 142.946C2398.43 115.55 2379.76 99.9176 2354.17 99.9176H2188.41ZM2188.41 273.967V368.244H2361.58C2390.87 368.244 2410.82 354.546 2410.82 321.509C2410.82 288.471 2390.87 274.128 2361.58 274.128H2188.41V273.967Z" fill="black"/><path d="M2600.89 468V0H2857.58C2966.7 0 3048.94 44.3183 3048.94 167.281C3048.94 250.922 3004.04 301.364 2944.33 325.699L3057.14 468H2918.26L2832.32 350.678H2715.8V468H2600.89ZM2715.48 99.9176V252.21H2858.87C2906.83 252.21 2933.71 228.521 2933.71 179.207C2933.71 119.256 2895.08 99.9176 2858.87 99.9176H2715.48Z" fill="black"/><path d="M3093.68 468L3263.14 0H3438.88L3608.35 468H3486.2L3457.55 382.587H3243.83L3215.83 468H3093.68ZM3274.41 290.727H3427.14L3364.85 104.752H3336.85L3274.41 290.727Z" fill="black"/><path d="M3669.34 0H3783.93L4003.93 292.017V0H4118.52V468H4003.93L3783.93 177.917V468H3669.34V0Z" fill="black"/><path d="M4208.96 0H4425.1C4563.51 0 4656.2 79.9337 4656.2 236.417C4656.2 392.417 4563.34 467.839 4425.1 467.839H4208.96V0ZM4323.55 97.3386V370.661H4431.38C4493.02 370.661 4541.62 325.699 4541.62 232.711C4541.62 139.723 4493.02 97.3386 4431.38 97.3386H4323.55Z" fill="black"/></svg>
+
+      <div class="accent-line" aria-hidden="true"></div>
+
+      <div class="letter-meta">
+        <div class="meta-row">
+          <span class="meta-label">Date</span>
+          <span class="meta-value accent">June 5, 2026</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">To</span>
+          <span class="meta-value">Admissions Committee, American University of Technology (AUT)</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">From</span>
+          <span class="meta-value">Mustafaev Eldor Shukhratovich, Founder &amp; CEO</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Company</span>
+          <span class="meta-value">Inexbrand</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Subject</span>
+          <h1 class="meta-value subject">Letter of Recommendation for Akhror Sharipov</h1>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===================== LETTER BODY ===================== -->
+    <section class="letter-body">
+      <p class="salutation">Dear Members of the Admissions Committee,</p>
+
+      <p>
+        It is my distinct privilege to highly recommend Akhror Sharipov as a
+        responsible, forward-thinking, and exceptionally capable professional who
+        has proven to be an invaluable asset to our team at Inexbrand.
+      </p>
+
+      <p>
+        During his tenure with us, Akhror has consistently delivered outstanding
+        results and demonstrated a rare combination of technical aptitude and soft
+        skills. I would like to specifically highlight his strategic foresight. In
+        complex projects involving Odoo ERP implementations and enterprise digital
+        transformation, Akhror never looks at a task solely from a technical
+        standpoint. He possesses the maturity to see the big picture&mdash;comprehending
+        the underlying business processes, the interconnectedness of various
+        departments, the client&rsquo;s ultimate objectives, and the final impact
+        of the project.
+      </p>
+
+      <p>
+        Akhror is an exceptionally fast learner who dives into new domains with
+        ease, quickly grasping task structures and adapting to changing project
+        requirements. He has a profound understanding of the IT sector, software
+        development principles, and digital automation. Notably, his greatest
+        strength lies not in isolated programming, but rather in his ability to act
+        as a bridge&mdash;understanding complex technical processes, aligning them
+        with business goals, and effectively organizing the team around delivering
+        a tangible result.
+      </p>
+
+      <p>
+        Furthermore, his organizational and leadership capabilities are truly
+        commendable. Akhror has a natural talent for rallying people around a
+        common objective, distributing responsibilities, maintaining seamless
+        internal communication, and driving the process forward to completion. He
+        exhibits well-developed team management skills and shows tremendous
+        potential for a successful future career in management, entrepreneurship,
+        and executive leadership.
+      </p>
+
+      <p>
+        Beyond his technical and managerial competencies, Akhror is an outstanding
+        communicator. He articulates his ideas clearly, speaks confidently in front
+        of audiences, prepares compelling presentations, and conducts effective
+        negotiations. These qualities enable him to interact seamlessly not only
+        with his internal team but also with clients, partners, and external
+        stakeholders.
+      </p>
+
+      <p>
+        We firmly believe that Akhror Sharipov possesses immense potential for both
+        professional and personal growth. He clearly demonstrates the mindset of a
+        future executive and entrepreneur&mdash;someone who can make critical
+        decisions, think on a large scale, and lead others.
+      </p>
+
+      <p>
+        Inexbrand enthusiastically recommends Akhror for admission to your
+        university. We are confident that your rigorous academic environment will
+        help him further unlock his capabilities, refine his professional skill
+        set, and shape him into an elite specialist and an influential leader.
+      </p>
+
+      <p class="closing">Sincerely,</p>
+
+      <!-- Overlay a signature PNG inside .signature-block (over .signature-space) -->
+      <div class="signature-block">
+        <div class="signature-space" aria-hidden="true"></div>
+        <p class="sig-name">Mustafaev Eldor Shukhratovich</p>
+        <p class="sig-info">Founder &amp; CEO, Inexbrand</p>
+        <p class="sig-info">+998 93 721 72 51</p>
+        <p class="sig-info"><a href="mailto:info@inexbrand.uz">info@inexbrand.uz</a></p>
+        <p class="sig-info"><a href="https://inexbrand.uz/">https://inexbrand.uz/</a></p>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>

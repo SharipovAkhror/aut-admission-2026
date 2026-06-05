@@ -15,6 +15,7 @@
     --muted:  #515154;  /* secondary text          */
     --faint:  #86868b;  /* labels / metadata        */
     --line:   #d2d2d7;  /* hairline rules           */
+    --accent: #e53935;  /* high-end accent          */
     --paper:  #ffffff;  /* page surface             */
     --desk:   #f5f5f7;  /* screen background        */
 
@@ -43,13 +44,45 @@
   }
 
   /* ============================================================
+     NAVIGATION (screen only — hidden in print via .no-print)
+     ============================================================ */
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.82);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    width: 210mm;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 13px 25mm;
+    display: flex;
+    align-items: center;
+    gap: 26px;
+  }
+  .nav-link {
+    font-size: 10.5pt;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.18s ease;
+  }
+  .nav-link:hover { color: var(--accent); }
+  .nav-link.active { color: var(--ink); font-weight: 600; }
+
+  /* ============================================================
      THE PAGE (screen simulation of an A4 sheet)
      ============================================================ */
   .sheet {
     width: 210mm;
     min-height: 297mm;
     margin: 28px auto;
-    padding: 26mm 30mm;
+    padding: 25mm;
     background: var(--paper);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.10),
                 0 2px  8px rgba(0, 0, 0, 0.06);
@@ -181,14 +214,17 @@
   }
 
   /* ============================================================
-     PRINT / PDF EXPORT
+     PRINT / PDF EXPORT  (reusable block)
      ============================================================ */
   @page {
     size: A4;
-    margin: 26mm 30mm;
+    margin: 25mm;
   }
 
   @media print {
+    /* Navigation and any screen-only chrome disappears in the PDF */
+    .no-print { display: none !important; }
+
     html, body { background: #ffffff; }
 
     .sheet {
@@ -221,6 +257,15 @@
 </style>
 </head>
 <body>
+
+  <!-- ===================== NAVIGATION ===================== -->
+  <nav class="site-nav no-print">
+    <div class="nav-inner">
+      <a class="nav-link active" href="index.html">Personal Statement</a>
+      <a class="nav-link" href="recommendation.html">Recommendation Letter</a>
+    </div>
+  </nav>
+
   <main class="sheet">
 
     <!-- ===================== MASTHEAD ===================== -->
