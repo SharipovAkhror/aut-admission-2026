@@ -54,6 +54,29 @@
 
   h1, h2, h3 { font-family: var(--font-head); }
 
+  /* ------------------------------------------------------------
+     HEADINGS ARE STRICTLY PLAIN TEXT.
+     Explicit guard: no background highlight, no box-shadow, and
+     no ::before/::after decorative shapes behind any heading,
+     on screen or in print. If a red block ever appears behind a
+     heading, it is being injected by a browser extension, not by
+     this stylesheet.
+     ------------------------------------------------------------ */
+  h1, h2, h3,
+  .meta-value.subject, .sig-name {
+    background: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  h1::before, h1::after,
+  h2::before, h2::after,
+  h3::before, h3::after,
+  .meta-value.subject::before, .meta-value.subject::after {
+    content: none !important;
+    background: transparent !important;
+  }
+
   /* ============================================================
      NAVIGATION (screen only — hidden in print via .no-print)
      ============================================================ */

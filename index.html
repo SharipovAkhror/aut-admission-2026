@@ -174,6 +174,31 @@
     color: var(--ink);
   }
 
+  /* ------------------------------------------------------------
+     HEADINGS ARE STRICTLY PLAIN TEXT.
+     Explicit guard: no background highlight, no box-shadow, and
+     no ::before/::after decorative shapes behind any heading,
+     on screen or in print. If a red block ever appears behind a
+     heading, it is being injected by a browser extension, not by
+     this stylesheet.
+     ------------------------------------------------------------ */
+  h1, h2, h3,
+  .eyebrow, .doc-type, .applicant-name,
+  .section-head, .section-title {
+    background: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  h1::before, h1::after,
+  h2::before, h2::after,
+  h3::before, h3::after,
+  .section-head::before, .section-head::after,
+  .section-title::before, .section-title::after {
+    content: none !important;
+    background: transparent !important;
+  }
+
   .section p {
     break-inside: avoid;
     page-break-inside: avoid;
