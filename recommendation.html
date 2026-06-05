@@ -182,7 +182,17 @@
     position: relative;     /* allows an <img> signature to be overlaid */
   }
   .signature-space {
+    position: relative;
     height: 80px;           /* blank space reserved for digital signature */
+  }
+  .signature-img {
+    position: absolute;
+    left: 0;
+    bottom: 4px;            /* sits just above the typed name */
+    height: 72px;
+    width: auto;
+    max-width: 90mm;
+    object-fit: contain;
   }
   .sig-name {
     font-family: var(--font-head);
@@ -347,7 +357,12 @@
 
       <!-- Overlay a signature PNG inside .signature-block (over .signature-space) -->
       <div class="signature-block">
-        <div class="signature-space" aria-hidden="true"></div>
+        <div class="signature-space" aria-hidden="true">
+          <!-- Drop a "signature.png" file into the repo root and it will
+               appear here automatically. Hidden gracefully if not present. -->
+          <img class="signature-img" src="signature.png" alt=""
+               onerror="this.style.display='none'" />
+        </div>
         <p class="sig-name">Mustafaev Eldor Shukhratovich</p>
         <p class="sig-info">Founder &amp; CEO, Inexbrand LLC</p>
         <p class="sig-info">+998 93 721 72 51</p>
